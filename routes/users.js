@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const passport = require('passport')
 
 const validateRegisterInput = require('../validation/register')
 const validateLoginInput = require('../validation/login')
@@ -71,5 +72,16 @@ router.route('/login').post((req, res) => {
         })
         .catch(err=> console.log(err))
 })
+
+router.route('/')
+    .get( passport.authenticate('jwt', { session: false }), (req, res) => {
+        res.json({
+            _id: req.user._id,
+            email: req.user.email,
+            login: req.user.login,
+            followers: req.user.followers,
+            following: req.user.following
+        })
+    })
 
 module.exports = router
