@@ -79,6 +79,19 @@ router.route('/')
             _id: req.user._id,
             email: req.user.email,
             login: req.user.login,
+            pass: req.user.password,
+            followers: req.user.followers,
+            following: req.user.following
+        })
+    })
+
+    router.route('/test2')
+    .get( (req, res) => {
+        res.json({
+            _id: req.user._id,
+            email: req.user.email,
+            login: req.user.login,
+            pass: req.user.password,
             followers: req.user.followers,
             following: req.user.following
         })

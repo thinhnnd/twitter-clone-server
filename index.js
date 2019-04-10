@@ -3,6 +3,7 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const users = require('./routes/users')
+const posts = require('./routes/posts')
 const cors = require('cors')
 const passport = require('passport')
 
@@ -22,6 +23,7 @@ app.use(passport.initialize())
 require('./config/passport')(passport)
 
 app.use('/api/users', users)
+app.use('/api/posts', posts)
 
 const PORT = process.env.PORT || 5000
 
